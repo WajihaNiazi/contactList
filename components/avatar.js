@@ -20,6 +20,7 @@ const styles =StyleSheet.create({
     avatarContainer:{
         borderRadius:'50%',
         borderColor:Colors.white,
+        borderWidth:1,
         backgroundColor:Colors.primary,
          justifyContent:'center',
          alignItems:'center' 

@@ -12,7 +12,7 @@ export default function ContactListItem({name,phone,onPress}){
     return (
         <TouchableOpacity onPress={onPress} style={styles.container}>
             <View style={styles.contactInfo}>
-                <Avatar name={name} size={40}/>
+                <Avatar name={name} size={50}/>
                 <View style={styles.details}>
                     <Text style={styles.title}>{name}</Text>
                     <Text style={styles.subTitle}>{phone}</Text>
@@ -26,14 +26,14 @@ export default function ContactListItem({name,phone,onPress}){
 const styles =StyleSheet.create({
     container:{
         flex:1, 
+        paddingLeft:24
     },
     contactInfo:{
         flexDirection:'row',
         paddingVertical:16,
         paddingHorizontal:24,
-        backgroundColor:Colors.secondary,
         borderBottomWidth:0.5,
-        borderBottomColor:'gray'
+        borderBottomColor:Colors.secondary
     },
     details:{
         marginLeft:20,
