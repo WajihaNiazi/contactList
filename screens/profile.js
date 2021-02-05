@@ -7,7 +7,10 @@ import {
 import Colors from '../utils/colors';
 import ContactThumbnail from '../components/contactThumbnail';
 import DetailListItem from '../components/DetailListItem';
-export default function Profile({name,phone,email}){
+export default function Profile(props){
+    const {route} = props
+    const {item} = route.params
+    const {name,phone,email}=item
     return (
         <View style={styles.container} >
             <View style={styles.thumbnailSection}>
