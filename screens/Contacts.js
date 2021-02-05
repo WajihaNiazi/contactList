@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import Colors from '../utils/colors';
 import ContactListItem from '../components/contactListItem'
-import {Feather} from '@expo/vector-icons'
 const contacts =[
     {id:'1',name:'Aqida',phone:'079544322',email:'aqida@gmail.com'},
     {id:'2',name:'Sodabeh',phone:'07954445',email:'sodabeh@gmail.com'},

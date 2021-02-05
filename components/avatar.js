@@ -14,7 +14,6 @@ export default function Avatar({name,size}){
         </View>
 
     )
-
 }
 const styles =StyleSheet.create({
     avatarContainer:{

@@ -2,11 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import Profile from './screens/profile'
+import CreateContact from './screens/createContacts'
 export default function App() {
   return (
     <View style={styles.container}>
-        <Profile name="Wajiha" phone="07932565677" email="Wajihaniazi@gmail.com" />
+        <CreateContact />
     </View>
   );
 }
@@ -14,5 +14,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor:"#f8f4f4"
   },
 });

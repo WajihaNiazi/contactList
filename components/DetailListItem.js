@@ -6,7 +6,6 @@ import {
 } from 'react-native';
 import Colors from '../utils/colors';
 import {MaterialIcons} from '@expo/vector-icons'
-
 export default function DetailListItem({icon,title,subTitle}){
     return (
         <View >
@@ -31,9 +30,9 @@ const styles =StyleSheet.create({
         flexDirection:'row',
         paddingVertical:16,
         borderBottomWidth:0.5,
-        borderBottomColor:Colors.secondary
+        borderBottomColor:Colors.secondary,
     },
-    container:{
+    cententContainer:{
         paddingLeft:20
     },
     title:{
