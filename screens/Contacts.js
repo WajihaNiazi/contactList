@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import {
     View,
     Text,
@@ -8,29 +8,39 @@ import {
 } from 'react-native';
 import Colors from '../utils/colors';
 import ContactListItem from '../components/contactListItem'
+import * as SQLite from "expo-sqlite";
 import { Feather } from "@expo/vector-icons";
-const contacts =[
-    {id:'1',name:'Aqida',phone:'079544322',email:'aqida@gmail.com'},
-    {id:'2',name:'Sodabeh',phone:'07954445',email:'sodabeh@gmail.com'},
-    {id:'3',name:'Naman',phone:'079544678',email:'naman@gmail.com'},
-    {id:'4',name:'Atefah',phone:'07978990',email:'atefah@gmail.com'},
-    {id:'5',name:'Fatemah',phone:'079568982',email:'fatemah@gmail.com'},
-    {id:'6',name:'Lila',phone:'0795799992',email:'lila@gmail.com'},
-    {id:'7',name:'Fareshteh',phone:'0795480002',email:'fareshteh@gmail.com'},
-    {id:'8',name:'Froza',phone:'079544322',email:'frozan@gmail.com'},
-    {id:'9',name:'Nahid',phone:'0795799322',email:'nahid@gmail.com'},
-]
+const db = SQLite.openDatabase('contacts.db');
 
 export default function Contacts({navigation}){
+  const [contacts,setContacts] = useState([]);
+  useEffect(()=>{
+    db.transaction((tx)=>{
+      tx.executeSql('select * from contact',[],(tx,{rows})=>{
+        var data =[];
+        for (let i = 0; i < rows.length; i++) {
+          data.push(rows[i]);
+        }
+        setContacts(data);
+      })
+    })
+  })
+  const deleteContact = (id)=>{
+    db.transaction(tx=>{
+      tx.executeSql('delete from contact where id = ?',[id]);
+    })
+  }
     return (
       <View>
-        <FlatList 
+        {contacts.length > 0 ? <FlatList 
           data={contacts}
           keyExtractor={(item)=>{item.id}}
           renderItem={({item}) =>{
-              return <ContactListItem name={item.name} phone={item.phone }  onPress={()=> navigation.navigate('Profile',{item:item})}/>
+              return <ContactListItem name={item.name} phone={item.phone }  onPress={()=> navigation.navigate('Profile',{item:item})} onDeleteContact={()=>{deleteContact(item.id)}}/>
           }}
-        />
+        /> : <View>
+            <Text>No contact to display </Text>
+          </View>}
         <TouchableOpacity style={styles.floatButton} onPress={()=> navigation.navigate('CreateContact')}>
           <Text>
             <Feather name="plus" size={28} color="white" />

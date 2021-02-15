@@ -5,10 +5,11 @@ import {
     TouchableOpacity,
     StyleSheet
 } from 'react-native';
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import Colors from '../utils/colors';
 import Avatar from './avatar';
 
-export default function ContactListItem({name,phone,onPress}){
+export default function ContactListItem({name,phone,onPress,onDeleteContact }){
     return (
         <TouchableOpacity onPress={onPress} style={styles.container}>
             <View style={styles.contactInfo}>
@@ -16,6 +17,9 @@ export default function ContactListItem({name,phone,onPress}){
                 <View style={styles.details}>
                     <Text style={styles.title}>{name}</Text>
                     <Text style={styles.subTitle}>{phone}</Text>
+                </View>
+                <View style={styles.deleteIcon}>
+                    <MaterialCommunityIcons name="trash-can" color="red" size={24} onPress={onDeleteContact}/>
                 </View>
             </View>
         </TouchableOpacity>
@@ -25,10 +29,10 @@ export default function ContactListItem({name,phone,onPress}){
 }
 const styles =StyleSheet.create({
     container:{
-        flex:1, 
         paddingLeft:24
     },
     contactInfo:{
+        flex:1, 
         flexDirection:'row',
         paddingVertical:16,
         paddingHorizontal:24,
@@ -36,6 +40,7 @@ const styles =StyleSheet.create({
         borderBottomColor:Colors.secondary
     },
     details:{
+        flex:2, 
         marginLeft:20,
     },
     title:{
@@ -46,6 +51,10 @@ const styles =StyleSheet.create({
     subTitle:{
         color:Colors.primary,
 
+    },
+    deleteIcon:{
+        flex:1, 
+        marginLeft:100
     }
     
 })
